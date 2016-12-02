@@ -34,3 +34,6 @@ function getFile(file) {
 // is done.
 
 // ???
+const filesToGet = ['file1', 'file2', 'file3']
+const promises = filesToGet.map(getFile)
+promises.reduce((chain, promise) => chain.then(() => promise).then(output), Promise.resolve())

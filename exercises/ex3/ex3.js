@@ -21,7 +21,21 @@ function output(text) {
 
 function getFile(file) {
 	// what do we do here?
+  return new Promise((resolve) => {
+    fakeAjax(file, resolve)
+  })
 }
 
 // request all files at once in "parallel"
 // ???
+file1 = getFile('file1')
+file2 = getFile('file2')
+file3 = getFile('file3')
+
+file1
+.then(output)
+.then(() => file2)
+.then(output)
+.then(() => file3)
+.then(output)
+.then(() => output('Complete!'))
